@@ -1,1 +1,1 @@
-This is the README.
+Django tutorial of the mozilla MDN.
