@@ -19,12 +19,18 @@ def index(request):
     # Genres with the word 'fantasy'
     num_genres_with_fantasy = Genre.objects.filter(name__icontains='fantasy').count()
 
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    num_visits += 1
+    request.session['num_visits'] = num_visits
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
         'num_genres_with_fantasy': num_genres_with_fantasy,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
